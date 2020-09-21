@@ -100,7 +100,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
                         panel.getGameCanvas().repaint();
 
                         if (interval < 51){
-                            if (score <= 5){
+                            if (score <= 10){
                                 interval++;
                             } else if (score > 10 && score <= 20){
                                 interval+=2;
