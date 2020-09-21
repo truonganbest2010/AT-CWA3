@@ -8,7 +8,9 @@ import java.awt.*;
 import javax.swing.*;
 
 import model.Circle;
+import model.LeftSideTriangle;
 import model.Rectangle;
+import model.RightSideTriangle;
 import model.Shape;
 
 import java.util.ArrayList;
@@ -75,10 +77,19 @@ public class ClickGameListener implements MouseListener, ActionListener{
                                     color = panel.getGameCanvas().getColorGrid()[row][col];
                                 }
 
-                                if (panel.getGameCanvas().getShapeGrid()[row][col] == 0){
-                                    shapes.add(new Circle(x1+10, y1+10, color, y2-y1-20-interval));
-                                } else if (panel.getGameCanvas().getShapeGrid()[row][col] == 1){
-                                    shapes.add(new Rectangle(x1+10, y1+10, color, x2-x1-20-interval, y2-y1-20-interval));
+                                int r = color.getRed();
+                                int g = color.getGreen();
+                                int b = color.getBlue();
+                                Color colorFade = new Color(r, g, b, 255-interval*5);
+
+                                if (panel.getGameCanvas().getShapeGrid()[row][col] == 0){ /* Add Circle */
+                                    shapes.add(new Circle(x1+10, y1+10, colorFade, y2-y1-20-interval));
+                                } else if (panel.getGameCanvas().getShapeGrid()[row][col] == 1){ /* Add Square */
+                                    shapes.add(new Rectangle(x1+10, y1+10, colorFade, x2-x1-20-interval, y2-y1-20-interval));
+                                } else if (panel.getGameCanvas().getShapeGrid()[row][col] == 2){
+                                    shapes.add(new LeftSideTriangle(x1+10, y1+10, colorFade, panel.getPrefferedShapeSize()-20-interval));
+                                } else if (panel.getGameCanvas().getShapeGrid()[row][col] == 3){
+                                    shapes.add(new RightSideTriangle(x1+10, y1+10, colorFade, panel.getPrefferedShapeSize()-20-interval));
                                 }
                                 
                                 if (panel.getGameCanvas().getColorGrid()[row][col] == Color.black){
@@ -88,9 +99,9 @@ public class ClickGameListener implements MouseListener, ActionListener{
                         }
                         panel.getGameCanvas().repaint();
 
-                        if (interval < 60)
+                        if (interval < 50)
                             interval++;
-                        if (interval == 60){
+                        if (interval == 50){
                             if (picked){
                                 interval = 0;
                                 click = 0;
@@ -107,7 +118,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
                                 score = 0;
                             }     
                         }
-                        
+                    
                         System.out.println(interval);
 
 
@@ -146,10 +157,6 @@ public class ClickGameListener implements MouseListener, ActionListener{
                     panel.getScoreLabel().setText("" + score);
                     panel.getGameCanvas().setColorGrid(row, col, Color.black);
                     click++;
-                    if (score%2 == 0 && period >= 30 && delay >= 2){
-                        period-= 15;
-                        delay--;
-                    }
                     
             } else {
                 panel.getGameCanvas().getShapes().clear();

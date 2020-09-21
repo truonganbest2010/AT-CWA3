@@ -15,7 +15,7 @@ public class ClickGameCanvas extends JPanel {
     private int gridRows;
     private int gridCols;
     private Color[][] colorGrid;
-    private int[][] shapeGrid; // 1 is rectangle, 0 is circle
+    private int[][] shapeGrid; // 3 is right side triangle, 2 is left side triangle, 1 is square, 0 is circle
     private int score;
 
     private ArrayList<Shape> shapes = new ArrayList<>();
@@ -40,7 +40,7 @@ public class ClickGameCanvas extends JPanel {
                 colorGrid[i][j] = new Color((int)(40+Math.random()*214),
                                             (int)(40+Math.random()*214),
                                             (int)(40+Math.random()*214));
-                shapeGrid[i][j] = r.nextInt(2);
+                shapeGrid[i][j] = r.nextInt(4);
             }
         }
 
@@ -65,6 +65,7 @@ public class ClickGameCanvas extends JPanel {
         super.paintComponent(g);
 
         if (panel.getGameState() == GameState.READY){
+            setBackground(Color.BLACK);
             g2.setColor(Color.WHITE);
             g2.setFont(new Font("Courier", Font.BOLD, 30));
             g2.drawString("Color Run", getWidth()/3, getHeight()/3);
@@ -73,6 +74,7 @@ public class ClickGameCanvas extends JPanel {
         }
 
         else if (panel.getGameState() == GameState.PLAYING){
+            setBackground(Color.BLACK);
             for (var s: shapes){
                 s.render(g2);
             }
@@ -80,7 +82,8 @@ public class ClickGameCanvas extends JPanel {
 
         else if (panel.getGameState() == GameState.GAMEOVER){
             shapes.clear();
-            g2.setColor(Color.RED);
+            setBackground(new Color(255, 51, 51, 96));
+            g2.setColor(Color.white);
             g2.setFont(new Font("Courier", Font.BOLD, 45));
             g2.drawString("Game Over", getWidth()/4, getHeight()/3);
             g2.drawString("Highest Score: " + score, getWidth()/7 - getWidth()/14, getHeight()/3 + getHeight()/5);

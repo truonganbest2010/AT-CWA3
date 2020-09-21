@@ -37,6 +37,14 @@ public class QuestCanvas extends JPanel {
             } else if (shapeNo == 1){
                 g2.drawRect(20, 20, 60, 60);
                 g2.fillRect(20+2, 20+2, 60-4, 60-4);
+            } else if (shapeNo == 2){
+                int[] x = new int[3]; x[0]=20; x[1]=20; x[2]=20+60;
+                int[] y = new int[3]; y[0]=20; y[1]=20+60; y[2]=20+60;
+                g2.fillPolygon(x, y, 3);
+            } else if (shapeNo == 3){
+                int[] x = new int[3]; x[0]=20+60; x[1]=20; x[2]=20+60;
+                int[] y = new int[3]; y[0]=20; y[1]=20+60; y[2]=20+60;
+                g2.fillPolygon(x, y, 3);
             }
         }
         else if (panel.getGameState() == GameState.GAMEOVER){

@@ -16,6 +16,9 @@ public class ClickGamePanel {
 
     private JButton newGameBtn;
 
+    private int prefferedShapeSize;
+    private int gameSize;
+
     private ClickGameCanvas gameCanvas;
     private QuestCanvas questCanvas;
     private JLabel scoreLabel = new JLabel();
@@ -26,6 +29,8 @@ public class ClickGamePanel {
         this.window = window;
         scoreLabel.setFont(new Font("Courier", Font.BOLD, 40));
         scoreLabel.setText("0");
+        gameSize = 6;
+        prefferedShapeSize = 100;
     }
 
     public void init(){
@@ -61,7 +66,7 @@ public class ClickGamePanel {
         TitledBorder gameCanvasTitle = BorderFactory.createTitledBorder("");
         centralPanel.setBorder(gameCanvasTitle);
 
-        gameCanvas = new ClickGameCanvas(this, 5, 5, 100);
+        gameCanvas = new ClickGameCanvas(this, gameSize, gameSize, prefferedShapeSize);
         centralPanel.add(gameCanvas);
 
 
@@ -69,6 +74,10 @@ public class ClickGamePanel {
         newGameBtn.addActionListener(listener);
         gameCanvas.addMouseListener(listener);
         
+    }
+
+    public int getPrefferedShapeSize(){
+        return prefferedShapeSize;
     }
 
     public JButton getNewGameBtn(){
