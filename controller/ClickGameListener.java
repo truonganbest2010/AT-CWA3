@@ -83,13 +83,13 @@ public class ClickGameListener implements MouseListener, ActionListener{
                                 Color colorFade = new Color(r, g, b, 255-interval*5);
 
                                 if (panel.getGameCanvas().getShapeGrid()[row][col] == 0){ /* Add Circle */
-                                    shapes.add(new Circle(x1+10, y1+10, colorFade, y2-y1-20-interval));
+                                    shapes.add(new Circle(x1+10, y1+10, colorFade, y2-y1-20));
                                 } else if (panel.getGameCanvas().getShapeGrid()[row][col] == 1){ /* Add Square */
-                                    shapes.add(new Rectangle(x1+10, y1+10, colorFade, x2-x1-20-interval, y2-y1-20-interval));
+                                    shapes.add(new Rectangle(x1+10, y1+10, colorFade, x2-x1-20, y2-y1-20));
                                 } else if (panel.getGameCanvas().getShapeGrid()[row][col] == 2){
-                                    shapes.add(new LeftSideTriangle(x1+10, y1+10, colorFade, panel.getPrefferedShapeSize()-20-interval));
+                                    shapes.add(new LeftSideTriangle(x1+10, y1+10, colorFade, panel.getPrefferedShapeSize()-20));
                                 } else if (panel.getGameCanvas().getShapeGrid()[row][col] == 3){
-                                    shapes.add(new RightSideTriangle(x1+10, y1+10, colorFade, panel.getPrefferedShapeSize()-20-interval));
+                                    shapes.add(new RightSideTriangle(x1+10, y1+10, colorFade, panel.getPrefferedShapeSize()-20));
                                 }
                                 
                                 if (panel.getGameCanvas().getColorGrid()[row][col] == Color.black){
