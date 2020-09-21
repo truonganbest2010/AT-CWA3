@@ -57,7 +57,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
             panel.getScoreLabel().setForeground(Color.black);
             panel.setGameState(GameState.PLAYING);
             timer = new Timer();
-            timer.schedule(new TimerTask(){
+            timer.scheduleAtFixedRate(new TimerTask(){
                 public void run(){
                         ArrayList<Shape> shapes = panel.getGameCanvas().getShapes();
                         shapes.clear();
