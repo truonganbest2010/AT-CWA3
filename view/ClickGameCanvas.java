@@ -37,9 +37,9 @@ public class ClickGameCanvas extends JPanel {
         Random r = new Random();
         for (int i = 0; i < gridRows; i++){
             for (int j = 0; j < gridCols; j++){
-                colorGrid[i][j] = new Color((int)(1+Math.random()*254),
-                                            (int)(1+Math.random()*254),
-                                            (int)(1+Math.random()*254));
+                colorGrid[i][j] = new Color((int)(40+Math.random()*214),
+                                            (int)(40+Math.random()*214),
+                                            (int)(40+Math.random()*214));
                 shapeGrid[i][j] = r.nextInt(2);
             }
         }
@@ -83,7 +83,7 @@ public class ClickGameCanvas extends JPanel {
             g2.setColor(Color.RED);
             g2.setFont(new Font("Courier", Font.BOLD, 45));
             g2.drawString("Game Over", 120, 230);
-            g2.drawString("Highest Score: " + score, 40, 280);
+            g2.drawString("Highest Score: " + score, 20, 280);
             repaint();
         }
 

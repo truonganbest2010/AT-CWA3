@@ -48,6 +48,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
             panel.getNewGameBtn().setEnabled(false);
             score = 0;
             click = 0;
+            panel.getGameCanvas().gridGenerator();
             panel.getScoreLabel().setText("" + score);
             panel.setGameState(GameState.PLAYING);
             Timer timer = new Timer();
@@ -142,7 +143,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
                 panel.getGameCanvas().getShapeGrid()[row][col] == panel.getQuestCanvas().getShapeNo()
                 ){
                     score++;
-                    panel.getScoreLabel().setFont(new Font("Courier", Font.BOLD, 20));
+                    panel.getScoreLabel().setFont(new Font("Courier", Font.BOLD, 40));
                     panel.getScoreLabel().setText("" + score);
                     panel.getGameCanvas().setColorBlack(row, col);
                     click++;

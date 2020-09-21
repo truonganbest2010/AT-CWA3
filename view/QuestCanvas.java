@@ -22,17 +22,17 @@ public class QuestCanvas extends JPanel {
     @Override
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
-        
+
         if (panel.getGameState() == GameState.PLAYING){
             if (colorQuest != null){
                 g2.setColor(colorQuest);
             }
             if (shapeNo == 0){
-                g2.drawOval(30, 40, 40, 40);
-                g2.fillOval(30+2, 40+2, 40-4, 40-4);
+                g2.drawOval(20, 20, 60, 60);
+                g2.fillOval(20+2, 20+2, 60-4, 60-4);
             } else if (shapeNo == 1){
-                g2.drawRect(30, 40, 40, 40);
-                g2.fillRect(30+2, 40+2, 40-4, 40-4);
+                g2.drawRect(20, 20, 60, 60);
+                g2.fillRect(20+2, 20+2, 60-4, 60-4);
             }
         }
         repaint();

@@ -22,7 +22,7 @@ public class ClickGamePanel {
 
     public ClickGamePanel(JFrame window){
         this.window = window;
-        scoreLabel.setFont(new Font("Courier", Font.BOLD, 20));
+        scoreLabel.setFont(new Font("Courier", Font.BOLD, 40));
         scoreLabel.setText("0");
     }
 
