@@ -102,7 +102,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
                         if (interval < 51){
                             if (score <= 5){
                                 interval++;
-                            } else if (score > 5 && score <= 20){
+                            } else if (score > 10 && score <= 20){
                                 interval+=2;
                             } else if (score > 20){
                                 interval+=3;
