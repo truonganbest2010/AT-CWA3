@@ -126,6 +126,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
             } else {
                 panel.getGameCanvas().getShapes().clear();
                 panel.setGameState(GameState.GAMEOVER);
+                panel.getGameCanvas().setScore(score);
                 panel.getGameCanvas().repaint();
                 panel.getNewGameBtn().setEnabled(true);
                 interval = 0;

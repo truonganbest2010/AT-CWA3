@@ -16,6 +16,7 @@ public class ClickGameCanvas extends JPanel {
     private int gridCols;
     private Color[][] colorGrid;
     private int[][] shapeGrid; // 1 is rectangle, 0 is circle
+    private int score;
 
     private ArrayList<Shape> shapes = new ArrayList<>();
 
@@ -80,8 +81,9 @@ public class ClickGameCanvas extends JPanel {
         else if (panel.getGameState() == GameState.GAMEOVER){
             shapes.clear();
             g2.setColor(Color.RED);
-            g2.setFont(new Font("Courier", Font.BOLD, 50));
-            g2.drawString("Game Over", 150, 250);
+            g2.setFont(new Font("Courier", Font.BOLD, 45));
+            g2.drawString("Game Over", 120, 230);
+            g2.drawString("Highest Score: " + score, 40, 280);
             repaint();
         }
 
@@ -109,6 +111,10 @@ public class ClickGameCanvas extends JPanel {
 
     public void setColorBlack(int row, int col){
         colorGrid[row][col] = Color.black;
+    }
+
+    public void setScore(int score){
+        this.score = score;
     }
 
 }
