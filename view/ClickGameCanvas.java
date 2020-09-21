@@ -37,9 +37,9 @@ public class ClickGameCanvas extends JPanel {
         Random r = new Random();
         for (int i = 0; i < gridRows; i++){
             for (int j = 0; j < gridCols; j++){
-                colorGrid[i][j] = new Color((int)(r.nextInt(255)),
-                                            (int)(r.nextInt(255)),
-                                            (int)(r.nextInt(255)));
+                colorGrid[i][j] = new Color((int)(1+Math.random()*254),
+                                            (int)(1+Math.random()*254),
+                                            (int)(1+Math.random()*254));
                 shapeGrid[i][j] = r.nextInt(2);
             }
         }

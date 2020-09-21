@@ -22,6 +22,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
     private int interval;
     private int delay;
     private int period;
+    private boolean picked;
     
     private Color color;
 
@@ -33,6 +34,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
         period = 100;
         interval = 0;
         score = 0;
+        picked = false;
     }
 
     @Override
@@ -52,6 +54,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
                         ArrayList<Shape> shapes = panel.getGameCanvas().getShapes();
                         shapes.clear();
                         int row, col;
+                        picked = false;
                         double cellWidth = (double)panel.getGameCanvas().getWidth() / panel.getGameCanvas().getGridCols();
                         double cellHeight = (double)panel.getGameCanvas().getHeight() / panel.getGameCanvas().getGridRows();
 
@@ -72,6 +75,9 @@ public class ClickGameListener implements MouseListener, ActionListener{
                                     shapes.add(new Rectangle(x1+5, y1+5, color, x2-x1-10-interval, y2-y1-10-interval));
                                 }
                                 
+                                if (panel.getGameCanvas().getColorGrid()[row][col] == Color.black){
+                                    picked = true;
+                                }
                             }
                         }
                         panel.getGameCanvas().repaint();
@@ -79,14 +85,26 @@ public class ClickGameListener implements MouseListener, ActionListener{
                         if (interval < 50)
                             interval++;
                         if (interval == 50){
-                            interval = 0;
-                            panel.getGameCanvas().gridGenerator();      
+                            if (picked){
+                                interval = 0;
+                                panel.getGameCanvas().gridGenerator();
+                            } else {
+                                panel.getGameCanvas().getShapes().clear();
+                                panel.setGameState(GameState.GAMEOVER);
+                                panel.getGameCanvas().setScore(score);
+                                panel.getGameCanvas().repaint();
+                                panel.getNewGameBtn().setEnabled(true);
+                                interval = 0;
+                                period = 100;
+                                score = 0;
+                            }     
                         }
                         if (score%2 == 0 && period >= 30){
                             period-= 10;
                         }
                         System.out.println(interval);
-                    
+
+
                     if (panel.getGameState() == GameState.GAMEOVER){
                         timer.cancel();
                         timer.purge();
