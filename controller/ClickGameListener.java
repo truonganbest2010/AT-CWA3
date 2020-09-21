@@ -47,8 +47,12 @@ public class ClickGameListener implements MouseListener, ActionListener{
         // TODO Auto-generated method stub
         JButton button = (JButton) e.getSource();
 
+        /* Exit */
+        if (button == panel.getExitBtn()){
+            System.exit(0);
+        }
         /* New Game */
-        if (button == panel.getNewGameBtn()){
+        else if (button == panel.getNewGameBtn()){
             panel.getNewGameBtn().setEnabled(false);
             score = 0;
             click = 0;

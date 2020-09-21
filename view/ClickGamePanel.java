@@ -15,6 +15,7 @@ public class ClickGamePanel {
     private JFrame window;
 
     private JButton newGameBtn;
+    private JButton exitBtn;
 
     private int prefferedShapeSize;
     private int gameSize;
@@ -34,6 +35,8 @@ public class ClickGamePanel {
     }
 
     public void init(){
+        Font font = new Font("Courier", Font.BOLD, 16);
+
         Container cp = window.getContentPane();
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new GridLayout(2, 1));
@@ -42,12 +45,14 @@ public class ClickGamePanel {
             
             JPanel questPanel = new JPanel();
             TitledBorder questTitle = BorderFactory.createTitledBorder("QUEST");
+            questTitle.setTitleFont(font);
             questPanel.setBorder(questTitle);
             questPanel.setLayout(new GridLayout(2, 1));
             questCanvas = new QuestCanvas(this);
             questPanel.add(questCanvas);
                 JPanel scorePanel = new JPanel();
                 TitledBorder scoreBorder = BorderFactory.createTitledBorder("SCORE");
+                scoreBorder.setTitleFont(font);
                 scorePanel.setBorder(scoreBorder);
                 scorePanel.add(scoreLabel);
             questPanel.add(scorePanel);
@@ -58,7 +63,11 @@ public class ClickGamePanel {
         rightPanel.add(buttonPanel);
 
             newGameBtn = new JButton("New Game");
+            newGameBtn.setFont(font);
+            exitBtn = new JButton("Exit");
+            exitBtn.setFont(font);
         buttonPanel.add(newGameBtn);
+        buttonPanel.add(exitBtn);
             
 
         JPanel centralPanel = new JPanel();
@@ -73,6 +82,7 @@ public class ClickGamePanel {
         ClickGameListener listener = new ClickGameListener(this);
         newGameBtn.addActionListener(listener);
         gameCanvas.addMouseListener(listener);
+        exitBtn.addActionListener(listener);
         
     }
 
@@ -82,6 +92,10 @@ public class ClickGamePanel {
 
     public JButton getNewGameBtn(){
         return newGameBtn;
+    }
+
+    public JButton getExitBtn(){
+        return exitBtn;
     }
 
     public JLabel getScoreLabel(){
