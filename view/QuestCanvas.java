@@ -32,28 +32,28 @@ public class QuestCanvas extends JPanel {
                 g2.setColor(colorQuest);
             }
             if (shapeNo == 0){
-                g2.drawOval(20, 20, 60, 60);
-                g2.fillOval(20+2, 20+2, 60-4, 60-4);
+                g2.drawOval(30, 30, 60, 60);
+                g2.fillOval(30+2, 30+2, 60-4, 60-4);
             } else if (shapeNo == 1){
-                g2.drawRect(20, 20, 60, 60);
-                g2.fillRect(20+2, 20+2, 60-4, 60-4);
+                g2.drawRect(30, 30, 60, 60);
+                g2.fillRect(30+2, 30+2, 60-4, 60-4);
             } else if (shapeNo == 2){
-                int[] x = new int[3]; x[0]=20; x[1]=20; x[2]=20+60;
-                int[] y = new int[3]; y[0]=20; y[1]=20+60; y[2]=20+60;
+                int[] x = new int[3]; x[0]=30; x[1]=30; x[2]=30+60;
+                int[] y = new int[3]; y[0]=30; y[1]=30+60; y[2]=30+60;
                 g2.fillPolygon(x, y, 3);
             } else if (shapeNo == 3){
-                int[] x = new int[3]; x[0]=20+60; x[1]=20; x[2]=20+60;
-                int[] y = new int[3]; y[0]=20; y[1]=20+60; y[2]=20+60;
+                int[] x = new int[3]; x[0]=30+60; x[1]=30; x[2]=30+60;
+                int[] y = new int[3]; y[0]=30; y[1]=30+60; y[2]=30+60;
                 g2.fillPolygon(x, y, 3);
             }
         }
         else if (panel.getGameState() == GameState.GAMEOVER){
             g2.setColor(Color.white);
-            g2.drawOval(18, 20, 60, 60);
+            g2.drawOval(28, 20, 60, 60);
             g2.setFont(new Font("Courier", Font.BOLD, 15));
-            g2.drawString("X", 35, 45);
-            g2.drawString("X", 55, 45);
-            g2.drawString("___", 35, 60);
+            g2.drawString("X", 45, 45);
+            g2.drawString("X", 65, 45);
+            g2.drawString("___", 45, 60);
         }
         repaint();
 
