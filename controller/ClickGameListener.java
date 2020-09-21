@@ -23,6 +23,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
     private int delay;
     private int period;
     private boolean picked;
+    private int click;
     
     private Color color;
 
@@ -35,6 +36,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
         interval = 0;
         score = 0;
         picked = false;
+        click = 0;
     }
 
     @Override
@@ -87,6 +89,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
                         if (interval == 50){
                             if (picked){
                                 interval = 0;
+                                click = 0;
                                 panel.getGameCanvas().gridGenerator();
                             } else {
                                 panel.getGameCanvas().getShapes().clear();
@@ -109,6 +112,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
                         timer.cancel();
                         timer.purge();
                         score = 0;
+                        click = 0;
                     }
                     
                 }
@@ -128,8 +132,9 @@ public class ClickGameListener implements MouseListener, ActionListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		if (panel.getGameState() == GameState.PLAYING){
+        // TODO Auto-generated method stub
+        click++;
+		if (panel.getGameState() == GameState.PLAYING && click == 1){
             int row = panel.getGameCanvas().findRow(e.getY());
             int col = panel.getGameCanvas().findColumn(e.getX());
 
@@ -150,6 +155,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
                 interval = 0;
                 period = 100;
                 score = 0;
+                click = 0;
             }
         }
 	}
