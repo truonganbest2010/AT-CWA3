@@ -112,7 +112,6 @@ public class ClickGameListener implements MouseListener, ActionListener{
                         timer.cancel();
                         timer.purge();
                         score = 0;
-                        click = 0;
                     }
                     
                 }
@@ -145,6 +144,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
                     panel.getScoreLabel().setFont(new Font("Courier", Font.BOLD, 20));
                     panel.getScoreLabel().setText("" + score);
                     panel.getGameCanvas().setColorBlack(row, col);
+                    click++;
                     
             } else {
                 panel.getGameCanvas().getShapes().clear();
