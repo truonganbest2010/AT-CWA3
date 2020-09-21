@@ -67,8 +67,8 @@ public class ClickGameCanvas extends JPanel {
         if (panel.getGameState() == GameState.READY){
             g2.setColor(Color.WHITE);
             g2.setFont(new Font("Courier", Font.BOLD, 30));
-            g2.drawString("Color Run", 150, 200);
-            g2.drawString("Click <New Game> to Start", 30, 250);
+            g2.drawString("Color Run", getWidth()/3, getHeight()/3);
+            g2.drawString("Click <New Game> to Start", getWidth()/7 - getWidth()/14, getHeight()/3 + getHeight()/5);
             repaint();
         }
 
@@ -82,8 +82,8 @@ public class ClickGameCanvas extends JPanel {
             shapes.clear();
             g2.setColor(Color.RED);
             g2.setFont(new Font("Courier", Font.BOLD, 45));
-            g2.drawString("Game Over", 120, 230);
-            g2.drawString("Highest Score: " + score, 20, 280);
+            g2.drawString("Game Over", getWidth()/4, getHeight()/3);
+            g2.drawString("Highest Score: " + score, getWidth()/7 - getWidth()/14, getHeight()/3 + getHeight()/5);
             repaint();
         }
 
@@ -109,8 +109,8 @@ public class ClickGameCanvas extends JPanel {
         return shapes;
     }
 
-    public void setColorBlack(int row, int col){
-        colorGrid[row][col] = Color.black;
+    public void setColorGrid(int row, int col, Color color){
+        colorGrid[row][col] = color;
     }
 
     public void setScore(int score){

@@ -24,6 +24,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
     private int period;
     private boolean picked;
     private int click;
+    private Timer timer;
     
     private Color color;
 
@@ -44,17 +45,18 @@ public class ClickGameListener implements MouseListener, ActionListener{
         // TODO Auto-generated method stub
         JButton button = (JButton) e.getSource();
 
+        /* New Game */
         if (button == panel.getNewGameBtn()){
             panel.getNewGameBtn().setEnabled(false);
             score = 0;
             click = 0;
             panel.getGameCanvas().gridGenerator();
             panel.getScoreLabel().setText("" + score);
+            panel.getScoreLabel().setForeground(Color.black);
             panel.setGameState(GameState.PLAYING);
-            Timer timer = new Timer();
-            timer.scheduleAtFixedRate(new TimerTask(){
+            timer = new Timer();
+            timer.schedule(new TimerTask(){
                 public void run(){
-                    
                         ArrayList<Shape> shapes = panel.getGameCanvas().getShapes();
                         shapes.clear();
                         int row, col;
@@ -74,9 +76,9 @@ public class ClickGameListener implements MouseListener, ActionListener{
                                 }
 
                                 if (panel.getGameCanvas().getShapeGrid()[row][col] == 0){
-                                    shapes.add(new Circle(x1+5, y1+5, color, y2-y1-10-interval));
+                                    shapes.add(new Circle(x1+10, y1+10, color, y2-y1-20-interval));
                                 } else if (panel.getGameCanvas().getShapeGrid()[row][col] == 1){
-                                    shapes.add(new Rectangle(x1+5, y1+5, color, x2-x1-10-interval, y2-y1-10-interval));
+                                    shapes.add(new Rectangle(x1+10, y1+10, color, x2-x1-20-interval, y2-y1-20-interval));
                                 }
                                 
                                 if (panel.getGameCanvas().getColorGrid()[row][col] == Color.black){
@@ -86,12 +88,13 @@ public class ClickGameListener implements MouseListener, ActionListener{
                         }
                         panel.getGameCanvas().repaint();
 
-                        if (interval < 50)
+                        if (interval < 60)
                             interval++;
-                        if (interval == 50){
+                        if (interval == 60){
                             if (picked){
                                 interval = 0;
                                 click = 0;
+                                picked = false;
                                 panel.getGameCanvas().gridGenerator();
                             } else {
                                 panel.getGameCanvas().getShapes().clear();
@@ -104,9 +107,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
                                 score = 0;
                             }     
                         }
-                        if (score%2 == 0 && period >= 30){
-                            period-= 10;
-                        }
+                        
                         System.out.println(interval);
 
 
@@ -118,10 +119,8 @@ public class ClickGameListener implements MouseListener, ActionListener{
                     
                 }
             }, delay, period);
-
-            System.out.println(panel.getNewGameBtn().getText());
+            // System.out.println(panel.getNewGameBtn().getText());
         }
-
 
     }
 
@@ -145,8 +144,12 @@ public class ClickGameListener implements MouseListener, ActionListener{
                     score++;
                     panel.getScoreLabel().setFont(new Font("Courier", Font.BOLD, 40));
                     panel.getScoreLabel().setText("" + score);
-                    panel.getGameCanvas().setColorBlack(row, col);
+                    panel.getGameCanvas().setColorGrid(row, col, Color.black);
                     click++;
+                    if (score%2 == 0 && period >= 30 && delay >= 2){
+                        period-= 15;
+                        delay--;
+                    }
                     
             } else {
                 panel.getGameCanvas().getShapes().clear();
@@ -154,6 +157,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
                 panel.getGameCanvas().setScore(score);
                 panel.getGameCanvas().repaint();
                 panel.getNewGameBtn().setEnabled(true);
+                panel.getScoreLabel().setForeground(Color.red);
                 interval = 0;
                 period = 100;
                 score = 0;

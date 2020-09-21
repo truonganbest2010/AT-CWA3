@@ -23,7 +23,11 @@ public class QuestCanvas extends JPanel {
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
 
-        if (panel.getGameState() == GameState.PLAYING){
+        if (panel.getGameState() == GameState.READY){
+
+        }
+
+        else if (panel.getGameState() == GameState.PLAYING){
             if (colorQuest != null){
                 g2.setColor(colorQuest);
             }
@@ -34,6 +38,14 @@ public class QuestCanvas extends JPanel {
                 g2.drawRect(20, 20, 60, 60);
                 g2.fillRect(20+2, 20+2, 60-4, 60-4);
             }
+        }
+        else if (panel.getGameState() == GameState.GAMEOVER){
+            g2.setColor(Color.white);
+            g2.drawOval(18, 20, 60, 60);
+            g2.setFont(new Font("Courier", Font.BOLD, 15));
+            g2.drawString("X", 35, 45);
+            g2.drawString("X", 55, 45);
+            g2.drawString("___", 35, 60);
         }
         repaint();
 

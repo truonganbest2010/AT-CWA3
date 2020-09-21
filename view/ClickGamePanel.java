@@ -13,7 +13,9 @@ public class ClickGamePanel {
         READY, PLAYING, GAMEOVER
     }
     private JFrame window;
+
     private JButton newGameBtn;
+
     private ClickGameCanvas gameCanvas;
     private QuestCanvas questCanvas;
     private JLabel scoreLabel = new JLabel();
@@ -32,22 +34,27 @@ public class ClickGamePanel {
         rightPanel.setLayout(new GridLayout(2, 1));
         cp.add(BorderLayout.EAST, rightPanel);
 
-        questCanvas = new QuestCanvas(this);
-        newGameBtn = new JButton("New Game");
-
-        JPanel questPanel = new JPanel();
-        TitledBorder questTitle = BorderFactory.createTitledBorder("QUEST");
-        questPanel.setBorder(questTitle);
-        questPanel.setLayout(new GridLayout(2, 1));
-        questPanel.add(questCanvas);
-            JPanel scorePanel = new JPanel();
-            TitledBorder scoreBorder = BorderFactory.createTitledBorder("SCORE");
-            scorePanel.setBorder(scoreBorder);
-            scorePanel.add(scoreLabel);
-        questPanel.add(scorePanel);
-
+            
+            JPanel questPanel = new JPanel();
+            TitledBorder questTitle = BorderFactory.createTitledBorder("QUEST");
+            questPanel.setBorder(questTitle);
+            questPanel.setLayout(new GridLayout(2, 1));
+            questCanvas = new QuestCanvas(this);
+            questPanel.add(questCanvas);
+                JPanel scorePanel = new JPanel();
+                TitledBorder scoreBorder = BorderFactory.createTitledBorder("SCORE");
+                scorePanel.setBorder(scoreBorder);
+                scorePanel.add(scoreLabel);
+            questPanel.add(scorePanel);
         rightPanel.add(questPanel);
-        rightPanel.add(newGameBtn);
+
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setLayout(new GridLayout(2, 1));
+        rightPanel.add(buttonPanel);
+
+            newGameBtn = new JButton("New Game");
+        buttonPanel.add(newGameBtn);
+            
 
         JPanel centralPanel = new JPanel();
         cp.add(BorderLayout.CENTER, centralPanel);
@@ -61,6 +68,7 @@ public class ClickGamePanel {
         ClickGameListener listener = new ClickGameListener(this);
         newGameBtn.addActionListener(listener);
         gameCanvas.addMouseListener(listener);
+        
     }
 
     public JButton getNewGameBtn(){
