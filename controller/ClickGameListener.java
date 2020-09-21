@@ -128,19 +128,16 @@ public class ClickGameListener implements MouseListener, ActionListener{
                                 period = 100;
                                 score = 0;
                             }     
-                        }
-                    
-                        System.out.println(interval);
-
-
+                        }                   
+                        // System.out.println(interval);
                     if (panel.getGameState() == GameState.GAMEOVER){
                         timer.cancel();
                         timer.purge();
                         score = 0;
-                    }
-                    
+                    }                   
                 }
             }, delay, period);
+            
             // System.out.println(panel.getNewGameBtn().getText());
         }
 
