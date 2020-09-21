@@ -47,6 +47,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
         if (button == panel.getNewGameBtn()){
             panel.getNewGameBtn().setEnabled(false);
             score = 0;
+            click = 0;
             panel.getScoreLabel().setText("" + score);
             panel.setGameState(GameState.PLAYING);
             Timer timer = new Timer();
