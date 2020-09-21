@@ -99,9 +99,16 @@ public class ClickGameListener implements MouseListener, ActionListener{
                         }
                         panel.getGameCanvas().repaint();
 
-                        if (interval < 50)
-                            interval++;
-                        if (interval == 50){
+                        if (interval < 49){
+                            if (score <= 5){
+                                interval++;
+                            } else if (score > 5 && score <= 20){
+                                interval+=2;
+                            } else if (score > 20){
+                                interval+=5;
+                            }
+                        }
+                        if (interval >= 49){
                             if (picked){
                                 interval = 0;
                                 click = 0;
