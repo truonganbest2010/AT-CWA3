@@ -54,6 +54,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
         /* New Game */
         else if (button == panel.getNewGameBtn()){
             panel.getNewGameBtn().setEnabled(false);
+            panel.getQuestCanvas().setBackground(Color.black);
             score = 0;
             click = 0;
             panel.getGameCanvas().gridGenerator();
