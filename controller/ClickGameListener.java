@@ -117,12 +117,15 @@ public class ClickGameListener implements MouseListener, ActionListener{
                                 interval = 0;
                                 click = 0;
                                 picked = false;
+                                panel.getQuestCanvas().setBackground(Color.black);
                                 panel.getGameCanvas().gridGenerator();
                             } else {
                                 panel.getGameCanvas().getShapes().clear();
                                 panel.setGameState(GameState.GAMEOVER);
+                                panel.getQuestCanvas().setBackground(new Color(255, 51, 51, 96));
                                 panel.getGameCanvas().setScore(score);
                                 panel.getGameCanvas().repaint();
+                                panel.getScoreLabel().setForeground(new Color(255, 80, 80, 200));
                                 panel.getNewGameBtn().setEnabled(true);
                                 interval = 0;
                                 period = 100;
@@ -161,6 +164,7 @@ public class ClickGameListener implements MouseListener, ActionListener{
                 panel.getGameCanvas().getShapeGrid()[row][col] == panel.getQuestCanvas().getShapeNo()
                 ){
                     score++;
+                    panel.getQuestCanvas().setBackground(new Color(20, 255, 20, 100));
                     panel.getScoreLabel().setFont(new Font("Courier", Font.BOLD, 40));
                     panel.getScoreLabel().setText("" + score);
                     panel.getGameCanvas().setColorGrid(row, col, Color.black);
@@ -171,8 +175,9 @@ public class ClickGameListener implements MouseListener, ActionListener{
                 panel.setGameState(GameState.GAMEOVER);
                 panel.getGameCanvas().setScore(score);
                 panel.getGameCanvas().repaint();
+                panel.getQuestCanvas().setBackground(new Color(255, 51, 51, 96));
                 panel.getNewGameBtn().setEnabled(true);
-                panel.getScoreLabel().setForeground(Color.red);
+                panel.getScoreLabel().setForeground(new Color(255, 80, 80, 200));
                 interval = 0;
                 period = 100;
                 score = 0;
