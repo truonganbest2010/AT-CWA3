@@ -47,25 +47,26 @@ public class ClickGamePanel {
             TitledBorder questTitle = BorderFactory.createTitledBorder("QUEST");
             questTitle.setTitleFont(font);
             questPanel.setBorder(questTitle);
-            questPanel.setLayout(new GridLayout(2, 1));
+            questPanel.setPreferredSize(new Dimension(100, 100));
             questCanvas = new QuestCanvas(this);
             questPanel.add(questCanvas);
+        rightPanel.add(questPanel);
+
                 JPanel scorePanel = new JPanel();
                 TitledBorder scoreBorder = BorderFactory.createTitledBorder("SCORE");
                 scoreBorder.setTitleFont(font);
                 scorePanel.setBorder(scoreBorder);
                 scorePanel.add(scoreLabel);
-            questPanel.add(scorePanel);
-        rightPanel.add(questPanel);
-
+        
             JPanel buttonPanel = new JPanel();
-            buttonPanel.setLayout(new GridLayout(2, 1));
+            buttonPanel.setLayout(new GridLayout(3, 1));
         rightPanel.add(buttonPanel);
 
             newGameBtn = new JButton("New Game");
             newGameBtn.setFont(font);
             exitBtn = new JButton("Exit");
             exitBtn.setFont(font);
+        buttonPanel.add(scorePanel);
         buttonPanel.add(newGameBtn);
         buttonPanel.add(exitBtn);
             
